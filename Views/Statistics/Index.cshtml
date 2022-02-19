@@ -1,0 +1,108 @@
+﻿@model IEnumerable<Firma.Models.Job>
+
+@{
+    ViewBag.Title = "Index";
+}
+
+<h2>Index</h2>
+
+
+<table class="table">
+    <tr>
+        <th>
+            Должность
+        </th>
+        <th>
+            Количество работников
+        </th>
+        <th>
+            Средняя зарплата
+        </th>
+        <th>
+            Общая по должности
+        </th>
+    </tr>
+    
+        @{
+            int totalSalary = 0, totalCount = 0;
+            var avgSalary = 0;
+        }
+    
+    @foreach (var item in Model)
+    {
+        <tr>
+            <td>
+                @Html.DisplayFor(modelItem => item.JobName)
+            </td>
+            <td>
+                @item.Workers.Count()
+            </td>
+                    @{
+                        int jobSalary = 0;
+                        var avgJobSalary = 0;
+                    }
+                    
+                    @foreach (var worker in item.Workers)
+                    {
+                        jobSalary = jobSalary + ((int)worker.Salary);
+                        totalSalary = totalSalary+((int)worker.Salary);
+                    }
+                    
+                    @{
+                        totalCount = totalCount + item.Workers.Count();
+                    }
+            <td>
+                @jobSalary
+            </td>
+            <td>
+                @{ 
+                    avgJobSalary = jobSalary / item.Workers.Count();
+                }
+                @avgJobSalary
+            </td>
+
+
+        </tr>
+
+    }
+
+    @{ 
+        avgSalary= totalSalary / totalCount;
+    }
+    <tr>
+        <td>
+            Итого
+        </td>
+        <td>
+            Общее количество сотрудников
+        </td>
+        <td>
+            Средняя зарплата по штату
+        </td>
+        <td>
+            Общая зарплата по штату
+        </td>
+    </tr>
+
+    <tr>
+
+        <td>
+        </td>
+        <td>
+           @totalCount
+        </td>
+
+        <td>
+            @avgSalary
+        </td>
+
+        <td>
+            @totalSalary
+        </td>
+
+
+    </tr>
+
+
+
+</table>

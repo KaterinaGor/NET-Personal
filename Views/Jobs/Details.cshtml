@@ -1,0 +1,59 @@
+﻿@model Firma.Models.Job
+
+@{
+    ViewBag.Title = "Details";
+}
+
+<h2>Details</h2>
+
+<div>
+    <h4>Job</h4>
+    <hr />
+    <dl class="dl-horizontal">
+        <dt>
+            @Html.DisplayNameFor(model => model.JobName)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.JobName)
+        </dd>
+
+        <dt>
+            @Html.DisplayNameFor(model => model.Description)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.Description)
+        </dd>
+
+        <dt>
+            @Html.DisplayNameFor(model => model.MainOrder)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.MainOrder)
+        </dd>
+    </dl>
+
+    <p>
+        Сотрудники:
+    </p>
+    <ul>
+        @foreach (var worker in Model.Workers)
+        {
+            <li>
+                <a href="/Workers/Details/@worker.Id">@worker.LastName </a>
+            </li>
+        }
+    </ul>
+
+</div>
+<p>
+    @if (Request.IsAuthenticated && User.IsInRole("admin") || User.IsInRole("moderator"))
+    {
+        @Html.ActionLink("Edit", "Edit", new { id = Model.Id }) <text>|</text>
+    }
+</p>
+<p>
+    @Html.ActionLink("Back to List", "Index")
+</p>

@@ -1,0 +1,20 @@
+﻿@model IEnumerable<Firma.Models.Job>
+
+@{
+    ViewBag.Title = "Home Page";
+}
+
+
+<h1>Index</h1>
+
+<ul>
+    @foreach (var item in Model)
+    {
+        
+    <li>
+        @Html.DisplayFor(modelItem => item.JobName) - (сотрудников @item.Workers.Count())
+    </li>    
+    }
+
+</ul>
+

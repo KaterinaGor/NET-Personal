@@ -1,0 +1,47 @@
+﻿@model Firma.Models.Worker
+
+@{
+    ViewBag.Title = "Details";
+}
+
+<h2>Details</h2>
+
+<h4>Worker - @Model.LastName (@Model.Job.JobName)</h4>
+    <hr />
+
+    <div class="panel panel-default">
+        <div class="panel-body">
+            @if (Model.Photo != null)
+            {
+                <img src="@Url.Action("GetImage", new {Model.Id})" class="img-rounded" />
+            }
+
+            <h3>@Html.DisplayFor(model => model.LastName)</h3>
+
+            <p>
+                @Html.DisplayFor(model => model.Job.JobName)
+            </p>
+
+            <p>
+                @Html.DisplayNameFor(model => model.Phone) - @Html.DisplayFor(model => model.Phone)
+            </p>
+
+            <p>
+                @if (Request.IsAuthenticated && User.IsInRole("admin") || User.IsInRole("moderator")) { 
+                    @Html.DisplayNameFor(model => model.Salary)
+                    @Html.DisplayFor(model => model.Salary)
+                }
+            </p>
+            
+        </div>
+    </div>
+  
+    <p>
+        @if (Request.IsAuthenticated && User.IsInRole("admin") || User.IsInRole("moderator"))
+        {
+            @Html.ActionLink("Edit", "Edit", new { id = Model.Id })<text>|</text>
+        }
+    </p>
+    <p>
+    @Html.ActionLink("Back to List", "Index")
+    </p>

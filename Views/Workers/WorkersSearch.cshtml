@@ -1,0 +1,24 @@
+﻿@model IEnumerable<Firma.Models.Worker>
+
+<div id="searchresult">
+
+    <h2>WorkersSearch</h2>
+
+    @foreach (var item in Model)
+    {
+
+        <p>
+            @Html.DisplayFor(modelItem => item.LastName)
+        </p>
+        <p>
+            @Html.DisplayFor(modelItem => item.Phone)
+        </p>
+
+        <p>
+            @* @Html.ActionLink("Edit", "Edit", new { id=item.Id }) | *@
+            @Html.ActionLink("Details", "Details", new { id = item.Id })
+            @* @Html.ActionLink("Delete", "Delete", new { id = item.Id }) *@
+        </p>
+
+    }
+</div>
