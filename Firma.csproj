@@ -294,10 +294,6 @@
     <Content Include="Views\Workers\Edit.cshtml" />
     <Content Include="Views\Workers\Index.cshtml" />
     <Content Include="Views\Workers\WorkersSearch.cshtml" />
-    <Content Include="Views\Statistics\Create.cshtml" />
-    <Content Include="Views\Statistics\Delete.cshtml" />
-    <Content Include="Views\Statistics\Details.cshtml" />
-    <Content Include="Views\Statistics\Edit.cshtml" />
     <Content Include="Views\Statistics\Index.cshtml" />
   </ItemGroup>
   <ItemGroup>
